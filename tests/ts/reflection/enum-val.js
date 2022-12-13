@@ -21,7 +21,7 @@ export class EnumVal {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     value() {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -113,7 +113,7 @@ export class EnumVal {
     }
 }
 export class EnumValT {
-    constructor(name = null, value = BigInt('0'), unionType = null, documentation = [], attributes = []) {
+    constructor(name = "", value = BigInt('0'), unionType = null, documentation = [], attributes = []) {
         this.name = name;
         this.value = value;
         this.unionType = unionType;

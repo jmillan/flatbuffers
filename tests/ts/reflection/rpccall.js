@@ -21,7 +21,7 @@ export class RPCCall {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     request(obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -107,7 +107,7 @@ export class RPCCall {
     }
 }
 export class RPCCallT {
-    constructor(name = null, request = null, response = null, attributes = [], documentation = []) {
+    constructor(name = "", request = null, response = null, attributes = [], documentation = []) {
         this.name = name;
         this.request = request;
         this.response = response;

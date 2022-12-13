@@ -30,11 +30,11 @@ static getSizePrefixedRootAsSchemaFile(bb:flatbuffers.ByteBuffer, obj?:SchemaFil
 /**
  * Filename, relative to project root.
  */
-filename():string|null
-filename(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-filename(optionalEncoding?:any):string|Uint8Array|null {
+filename():string
+filename(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+filename(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 /**
@@ -109,7 +109,7 @@ unpackTo(_o: SchemaFileT): void {
 
 export class SchemaFileT implements flatbuffers.IGeneratedObject {
 constructor(
-  public filename: string|Uint8Array|null = null,
+  public filename: string|Uint8Array = "",
   public includedFilenames: (string)[] = []
 ){}
 

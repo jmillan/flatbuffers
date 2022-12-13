@@ -22,11 +22,11 @@ static getSizePrefixedRootAsKeyValue(bb:flatbuffers.ByteBuffer, obj?:KeyValue):K
   return (obj || new KeyValue()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-key():string|null
-key(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-key(optionalEncoding?:any):string|Uint8Array|null {
+key():string
+key(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+key(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 value():string|null
@@ -81,7 +81,7 @@ unpackTo(_o: KeyValueT): void {
 
 export class KeyValueT implements flatbuffers.IGeneratedObject {
 constructor(
-  public key: string|Uint8Array|null = null,
+  public key: string|Uint8Array = "",
   public value: string|Uint8Array|null = null
 ){}
 

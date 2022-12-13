@@ -24,11 +24,11 @@ static getSizePrefixedRootAsRPCCall(bb:flatbuffers.ByteBuffer, obj?:RPCCall):RPC
   return (obj || new RPCCall()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 request(obj?:Object_):Object_|null {
@@ -146,7 +146,7 @@ unpackTo(_o: RPCCallT): void {
 
 export class RPCCallT implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public request: Object_T|null = null,
   public response: Object_T|null = null,
   public attributes: (KeyValueT)[] = [],

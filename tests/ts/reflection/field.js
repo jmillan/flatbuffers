@@ -21,7 +21,7 @@ export class Field {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     type(obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -245,7 +245,7 @@ export class Field {
     }
 }
 export class FieldT {
-    constructor(name = null, type = null, id = 0, offset = 0, defaultInteger = BigInt('0'), defaultReal = 0.0, deprecated = false, required = false, key = false, attributes = [], documentation = [], optional = false, padding = 0) {
+    constructor(name = "", type = null, id = 0, offset = 0, defaultInteger = BigInt('0'), defaultReal = 0.0, deprecated = false, required = false, key = false, attributes = [], documentation = [], optional = false, padding = 0) {
         this.name = name;
         this.type = type;
         this.id = id;

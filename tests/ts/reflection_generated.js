@@ -209,7 +209,7 @@ export class KeyValue {
     }
     key(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     value(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -247,7 +247,7 @@ export class KeyValue {
     }
 }
 export class KeyValueT {
-    constructor(key = null, value = null) {
+    constructor(key = "", value = null) {
         this.key = key;
         this.value = value;
     }
@@ -276,7 +276,7 @@ export class EnumVal {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     value() {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -368,7 +368,7 @@ export class EnumVal {
     }
 }
 export class EnumValT {
-    constructor(name = null, value = BigInt('0'), unionType = null, documentation = [], attributes = []) {
+    constructor(name = "", value = BigInt('0'), unionType = null, documentation = [], attributes = []) {
         this.name = name;
         this.value = value;
         this.unionType = unionType;
@@ -408,7 +408,7 @@ export class Enum {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     values(index, obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -532,7 +532,7 @@ export class Enum {
     }
 }
 export class EnumT {
-    constructor(name = null, values = [], isUnion = false, underlyingType = null, attributes = [], documentation = [], declarationFile = null) {
+    constructor(name = "", values = [], isUnion = false, underlyingType = null, attributes = [], documentation = [], declarationFile = null) {
         this.name = name;
         this.values = values;
         this.isUnion = isUnion;
@@ -578,7 +578,7 @@ export class Field {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     type(obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -802,7 +802,7 @@ export class Field {
     }
 }
 export class FieldT {
-    constructor(name = null, type = null, id = 0, offset = 0, defaultInteger = BigInt('0'), defaultReal = 0.0, deprecated = false, required = false, key = false, attributes = [], documentation = [], optional = false, padding = 0) {
+    constructor(name = "", type = null, id = 0, offset = 0, defaultInteger = BigInt('0'), defaultReal = 0.0, deprecated = false, required = false, key = false, attributes = [], documentation = [], optional = false, padding = 0) {
         this.name = name;
         this.type = type;
         this.id = id;
@@ -858,7 +858,7 @@ export class Object_ {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     fields(index, obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -1017,7 +1017,7 @@ export class Object_ {
     }
 }
 export class Object_T {
-    constructor(name = null, fields = [], isStruct = false, minalign = 0, bytesize = 0, attributes = [], documentation = [], declarationFile = null) {
+    constructor(name = "", fields = [], isStruct = false, minalign = 0, bytesize = 0, attributes = [], documentation = [], declarationFile = null) {
         this.name = name;
         this.fields = fields;
         this.isStruct = isStruct;
@@ -1055,7 +1055,7 @@ export class RPCCall {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     request(obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -1141,7 +1141,7 @@ export class RPCCall {
     }
 }
 export class RPCCallT {
-    constructor(name = null, request = null, response = null, attributes = [], documentation = []) {
+    constructor(name = "", request = null, response = null, attributes = [], documentation = []) {
         this.name = name;
         this.request = request;
         this.response = response;
@@ -1182,7 +1182,7 @@ export class Service {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     calls(index, obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -1289,7 +1289,7 @@ export class Service {
     }
 }
 export class ServiceT {
-    constructor(name = null, calls = [], attributes = [], documentation = [], declarationFile = null) {
+    constructor(name = "", calls = [], attributes = [], documentation = [], declarationFile = null) {
         this.name = name;
         this.calls = calls;
         this.attributes = attributes;
@@ -1329,7 +1329,7 @@ export class SchemaFile {
     }
     filename(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     includedFilenames(index, optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -1381,7 +1381,7 @@ export class SchemaFile {
     }
 }
 export class SchemaFileT {
-    constructor(filename = null, includedFilenames = []) {
+    constructor(filename = "", includedFilenames = []) {
         this.filename = filename;
         this.includedFilenames = includedFilenames;
     }

@@ -266,11 +266,11 @@ static getSizePrefixedRootAsKeyValue(bb:flatbuffers.ByteBuffer, obj?:KeyValue):K
   return (obj || new KeyValue()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-key():string|null
-key(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-key(optionalEncoding?:any):string|Uint8Array|null {
+key():string
+key(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+key(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 value():string|null
@@ -325,7 +325,7 @@ unpackTo(_o: KeyValueT): void {
 
 export class KeyValueT implements flatbuffers.IGeneratedObject {
 constructor(
-  public key: string|Uint8Array|null = null,
+  public key: string|Uint8Array = "",
   public value: string|Uint8Array|null = null
 ){}
 
@@ -359,11 +359,11 @@ static getSizePrefixedRootAsEnumVal(bb:flatbuffers.ByteBuffer, obj?:EnumVal):Enu
   return (obj || new EnumVal()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 value():bigint {
@@ -490,7 +490,7 @@ unpackTo(_o: EnumValT): void {
 
 export class EnumValT implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public value: bigint = BigInt('0'),
   public unionType: TypeT|null = null,
   public documentation: (string)[] = [],
@@ -533,11 +533,11 @@ static getSizePrefixedRootAsEnum(bb:flatbuffers.ByteBuffer, obj?:Enum):Enum {
   return (obj || new Enum()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 values(index: number, obj?:EnumVal):EnumVal|null {
@@ -710,7 +710,7 @@ unpackTo(_o: EnumT): void {
 
 export class EnumT implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public values: (EnumValT)[] = [],
   public isUnion: boolean = false,
   public underlyingType: TypeT|null = null,
@@ -759,11 +759,11 @@ static getSizePrefixedRootAsField(bb:flatbuffers.ByteBuffer, obj?:Field):Field {
   return (obj || new Field()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 type(obj?:Type):Type|null {
@@ -1070,7 +1070,7 @@ unpackTo(_o: FieldT): void {
 
 export class FieldT implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public type: TypeT|null = null,
   public id: number = 0,
   public offset: number = 0,
@@ -1129,11 +1129,11 @@ static getSizePrefixedRootAsObject(bb:flatbuffers.ByteBuffer, obj?:Object_):Obje
   return (obj || new Object_()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 fields(index: number, obj?:Field):Field|null {
@@ -1350,7 +1350,7 @@ unpackTo(_o: Object_T): void {
 
 export class Object_T implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public fields: (FieldT)[] = [],
   public isStruct: boolean = false,
   public minalign: number = 0,
@@ -1399,11 +1399,11 @@ static getSizePrefixedRootAsRPCCall(bb:flatbuffers.ByteBuffer, obj?:RPCCall):RPC
   return (obj || new RPCCall()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 request(obj?:Object_):Object_|null {
@@ -1521,7 +1521,7 @@ unpackTo(_o: RPCCallT): void {
 
 export class RPCCallT implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public request: Object_T|null = null,
   public response: Object_T|null = null,
   public attributes: (KeyValueT)[] = [],
@@ -1565,11 +1565,11 @@ static getSizePrefixedRootAsService(bb:flatbuffers.ByteBuffer, obj?:Service):Ser
   return (obj || new Service()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 calls(index: number, obj?:RPCCall):RPCCall|null {
@@ -1716,7 +1716,7 @@ unpackTo(_o: ServiceT): void {
 
 export class ServiceT implements flatbuffers.IGeneratedObject {
 constructor(
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public calls: (RPCCallT)[] = [],
   public attributes: (KeyValueT)[] = [],
   public documentation: (string)[] = [],
@@ -1767,11 +1767,11 @@ static getSizePrefixedRootAsSchemaFile(bb:flatbuffers.ByteBuffer, obj?:SchemaFil
 /**
  * Filename, relative to project root.
  */
-filename():string|null
-filename(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-filename(optionalEncoding?:any):string|Uint8Array|null {
+filename():string
+filename(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+filename(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 /**
@@ -1846,7 +1846,7 @@ unpackTo(_o: SchemaFileT): void {
 
 export class SchemaFileT implements flatbuffers.IGeneratedObject {
 constructor(
-  public filename: string|Uint8Array|null = null,
+  public filename: string|Uint8Array = "",
   public includedFilenames: (string)[] = []
 ){}
 

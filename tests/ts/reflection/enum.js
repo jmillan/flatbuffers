@@ -22,7 +22,7 @@ export class Enum {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     values(index, obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -146,7 +146,7 @@ export class Enum {
     }
 }
 export class EnumT {
-    constructor(name = null, values = [], isUnion = false, underlyingType = null, attributes = [], documentation = [], declarationFile = null) {
+    constructor(name = "", values = [], isUnion = false, underlyingType = null, attributes = [], documentation = [], declarationFile = null) {
         this.name = name;
         this.values = values;
         this.isUnion = isUnion;

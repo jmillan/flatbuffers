@@ -440,7 +440,9 @@ class TsGenerator : public BaseGenerator {
     switch (value.type.base_type) {
       case BASE_TYPE_BOOL: return value.constant == "0" ? "false" : "true";
 
-      case BASE_TYPE_STRING:
+      case BASE_TYPE_STRING: {
+        return field.IsOptional() ? "null" : "\"\"";
+                             }
       case BASE_TYPE_UNION:
       case BASE_TYPE_STRUCT: {
         return "null";
@@ -1176,7 +1178,7 @@ class TsGenerator : public BaseGenerator {
       // Emit a scalar field
       const auto is_string = IsString(field.value.type);
       if (IsScalar(field.value.type.base_type) || is_string) {
-        const auto has_null_default = is_string || HasNullDefault(field);
+        const auto has_null_default = field.IsOptional() || HasNullDefault(field);
 
         field_type += GenTypeName(imports, field, field.value.type, false,
                                   has_null_default);
@@ -1409,7 +1411,13 @@ class TsGenerator : public BaseGenerator {
         }
 
         // length 0 vector is simply empty instead of null
-        field_type += is_vector ? "" : "|null";
+        if (is_vector) {
+          field_type += "";
+        }
+        // default to null unless it is a required string
+        else if (!(is_string && !field.IsOptional())) {
+          field_type +="|null";
+        }
       }
 
       if (!field_offset_decl.empty()) {
@@ -1572,15 +1580,16 @@ class TsGenerator : public BaseGenerator {
       // Emit a scalar field
       const auto is_string = IsString(field.value.type);
       if (IsScalar(field.value.type.base_type) || is_string) {
-        const auto has_null_default = is_string || HasNullDefault(field);
+        const auto has_null_default = field.IsOptional() || HasNullDefault(field);
 
         GenDocComment(field.doc_comment, code_ptr);
         std::string prefix = namer_.Method(field) + "(";
         if (is_string) {
-          code += prefix + "):string|null\n";
+          code += prefix + "):string" + (has_null_default ? "|null\n" : "\n");
           code +=
               prefix + "optionalEncoding:flatbuffers.Encoding" + "):" +
-              GenTypeName(imports, struct_def, field.value.type, false, true) +
+              GenTypeName(imports, struct_def, field.value.type, false,
+                          has_null_default) +
               "\n";
           code += prefix + "optionalEncoding?:any";
         } else {
@@ -2052,7 +2061,7 @@ class TsGenerator : public BaseGenerator {
           const auto &field = **it;
           if (field.deprecated) continue;
           code += ", " + GetArgName(field) + ":" +
-                  GetArgType(imports, struct_def, field, true);
+                  GetArgType(imports, struct_def, field, field.IsOptional());
         }
 
         code += "):flatbuffers.Offset {\n";

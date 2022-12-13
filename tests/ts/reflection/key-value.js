@@ -19,7 +19,7 @@ export class KeyValue {
     }
     key(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     value(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -57,7 +57,7 @@ export class KeyValue {
     }
 }
 export class KeyValueT {
-    constructor(key = null, value = null) {
+    constructor(key = "", value = null) {
         this.key = key;
         this.value = value;
     }

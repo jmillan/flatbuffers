@@ -21,7 +21,7 @@ export class Object_ {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     fields(index, obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -180,7 +180,7 @@ export class Object_ {
     }
 }
 export class Object_T {
-    constructor(name = null, fields = [], isStruct = false, minalign = 0, bytesize = 0, attributes = [], documentation = [], declarationFile = null) {
+    constructor(name = "", fields = [], isStruct = false, minalign = 0, bytesize = 0, attributes = [], documentation = [], declarationFile = null) {
         this.name = name;
         this.fields = fields;
         this.isStruct = isStruct;

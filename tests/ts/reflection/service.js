@@ -21,7 +21,7 @@ export class Service {
     }
     name(optionalEncoding) {
         const offset = this.bb.__offset(this.bb_pos, 4);
-        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+        return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : "";
     }
     calls(index, obj) {
         const offset = this.bb.__offset(this.bb_pos, 6);
@@ -128,7 +128,7 @@ export class Service {
     }
 }
 export class ServiceT {
-    constructor(name = null, calls = [], attributes = [], documentation = [], declarationFile = null) {
+    constructor(name = "", calls = [], attributes = [], documentation = [], declarationFile = null) {
         this.name = name;
         this.calls = calls;
         this.attributes = attributes;

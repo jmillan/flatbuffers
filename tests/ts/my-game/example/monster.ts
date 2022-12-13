@@ -79,11 +79,11 @@ mutate_hp(value:number):boolean {
   return true;
 }
 
-name():string|null
-name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-name(optionalEncoding?:any):string|Uint8Array|null {
+name():string
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array
+name(optionalEncoding?:any):string|Uint8Array {
   const offset = this.bb!.__offset(this.bb_pos, 10);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : "";
 }
 
 inventory(index: number):number|null {
@@ -1468,7 +1468,7 @@ constructor(
   public pos: Vec3T|null = null,
   public mana: number = 150,
   public hp: number = 100,
-  public name: string|Uint8Array|null = null,
+  public name: string|Uint8Array = "",
   public inventory: (number)[] = [],
   public color: Color = Color.Blue,
   public testType: Any = Any.NONE,
